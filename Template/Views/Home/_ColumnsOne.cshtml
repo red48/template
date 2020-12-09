@@ -1,0 +1,43 @@
+﻿@using AdvantShop.CMS;
+
+@{
+    bool showTextOnMain = StaticBlockService.GetPagePartByKeyWithCache("TextOnMain").Content.Contains("Это тег H1") == false || SettingsMain.EnableInplace;
+}
+
+<div class="row body-content">
+    <div class="col-xs-12 site-body-main">
+        @Html.StaticBlock("mainpage_before_carousel")
+        <div class="slider-main-block">
+            <div class="row">
+                @Html.RenderModules("mainpage_after_carousel")
+                @Html.Action("Carousel", "Home")
+            </div>
+        </div>
+        @Html.Action("BrandCarousel", "Brand", new { count = 20 })
+        @if (showTextOnMain)
+        {
+            @Html.StaticBlock("TextOnMain")
+        }
+        @Html.RenderModules("mainpage_block")
+        @Html.Action("MainPageProducts", "Home")
+        @Html.StaticBlock("TextOnMain2")
+        @Html.Action("NewsSubscription", "News")
+	
+        <div class="row">          
+            @Html.StaticBlock("TemplateMainPageTest1", "col-xs-3 template-main-page-1")
+            @Html.StaticBlock("TemplateMainPageTest2", "col-xs-3 template-main-page-1")
+            @Html.StaticBlock("TemplateMainPageTest3", "col-xs-3 template-main-page-1")
+            @Html.StaticBlock("TemplateMainPageTest4", "col-xs-3 template-main-page-1")
+        </div>
+
+        <div class="blocks-on-main-horizontals">
+            @Html.Action("NewsBlock", "News")
+            @Html.RenderModules("voting_block")
+            @Html.StaticBlock("Vk")
+            @Html.Action("CheckOrderBlock", "Checkout")
+            @Html.Action("GiftCertificateBlock", "GiftCertificate")
+            @Html.Partial("SocialWidget")
+
+        </div>
+    </div>
+</div>

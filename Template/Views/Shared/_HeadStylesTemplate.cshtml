@@ -1,0 +1,20 @@
+﻿@* Add or remove template bundles
+    Html.AddBundles(new List<string> { "~/mycss.css", "~/mycss2.css" }, "bundleName.css")
+    Html.AddBundle("~/mycss3.css", "bundleName.css")
+    Html.RemoveBundle("~/mycss3.css", "bundleName.css")
+*@
+
+@{
+    var modeisOneColumn = SettingsDesign.MainPageMode == SettingsDesign.eMainPageMode.Default;
+
+    var list = new List<string>
+    ()
+    {
+    "~/templates/" + SettingsDesign.Template + "/styles/extend-styles/main.css",
+   
+    };
+
+    Html.AddBundles(list, "main.css");
+
+    Html.AddBundles(list, "main_without_design.css");
+}
